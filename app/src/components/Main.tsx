@@ -2,7 +2,7 @@
 
 import { Board as BoardType } from '../../../types/Board';
 import Game from './Game';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 
 interface MainProps {
   boards: BoardType[];
@@ -11,15 +11,11 @@ interface MainProps {
 const Main = ({ boards }: MainProps) => {
   // Ensure boards are sorted without mutating the original array
   const sortedBoards = [...boards].sort((a, b) => b.date.localeCompare(a.date));
-  const [board, setBoard] = useState<BoardType | null>(null);
-  const dateRef = useRef<HTMLSelectElement>(null);
 
-  // Set initial board state after sorting
-  useEffect(() => {
-    if (sortedBoards.length > 0) {
-      setBoard(sortedBoards[0]);
-    }
-  }, [sortedBoards]);
+  // Set the initial board state to the first sorted board
+  const [board, setBoard] = useState<BoardType | null>(sortedBoards[0] || null);
+
+  const dateRef = useRef<HTMLSelectElement>(null);
 
   const handleSubmit = () => {
     if (dateRef.current) {
@@ -44,7 +40,7 @@ const Main = ({ boards }: MainProps) => {
         <label className="align-middle" htmlFor="date-select">
           Select a Date:
         </label>
-        <select id="date-select" name="dates" ref={dateRef}>
+        <select id="date-select" name="dates" ref={dateRef} defaultValue={dates[0]}>
           {dates.map((date) => (
             <option key={date} value={date}>
               {date}
