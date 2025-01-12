@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { Board as BoardType } from '../../types/Board';
 
 const boardSchema = new Schema<BoardType>({

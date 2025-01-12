@@ -7,10 +7,10 @@ import './Cell.css';
 
 const Cell = (props: { icon: string, down: string, right: string }) => {
   // Some bug with tailwind idk why
-  const cellDown = "h-16 w-16 flex items-center justify-center absolute z-1 opacity-100 translate-y-8";
-  const cellRight = "h-16 w-16 flex items-center justify-center absolute z-1 opacity-100 translate-x-8";
-  const cell = "border border-[var(--contrast-color)] h-16 w-16 flex items-center justify-center relative z-0";
-  const cellContent = "h-16 w-16 flex items-center justify-center absolute z-2";
+  // const cellDown = "h-16 w-16 flex items-center justify-center absolute z-1 opacity-100 translate-y-8";
+  // const cellRight = "h-16 w-16 flex items-center justify-center absolute z-1 opacity-100 translate-x-8";
+  // const cell = "border border-[var(--contrast-color)] h-16 w-16 flex items-center justify-center relative z-0";
+  // const cellContent = "h-16 w-16 flex items-center justify-center absolute z-2";
   return (
     <div className="cell">
       <div className="cell-content">
