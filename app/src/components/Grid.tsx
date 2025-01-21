@@ -31,6 +31,7 @@ const Grid = ({ board }: GridProps) => {
               icon={board.grid[i]}
               down={downcrosses ? "crosses" : downequals ? "equals" : ""}
               right={rightcrosses ? "crosses" : rightequals ? "equals" : ""}
+              active={board.activeCell === i}
             />
           )
         }

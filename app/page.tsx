@@ -17,6 +17,7 @@ async function fetchBoards(): Promise<BoardType[]> {
     grid: board.grid,
     crosses: board.crosses,
     equals: board.equals,
+    moves: board.moves,
     date: board.date,
     _id: board._id.toString(),
   }));
