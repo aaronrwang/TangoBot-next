@@ -10,7 +10,7 @@ export default function Move({ move, index, turn, turnSet }: GameProps) {
   const rc = move[2]
   if (rc == '1.1') {
     reasoning = 'cross sign'
-  } else if (rc == '1.1') {
+  } else if (rc == '1.2') {
     reasoning = 'equal sign'
   } else if (rc == '2.1.1') {
     reasoning = 'Already 3 Moons in row'
@@ -37,7 +37,7 @@ export default function Move({ move, index, turn, turnSet }: GameProps) {
       <button onClick={() => turnSet(index + 1)} className="flex flex-col justify-center items-center">
         <p>Turn {index + 1}:({Math.floor(move[0] / 6)},{move[0] % 6})</p>
         <p>{move[1] === 'S' ? 'Sun' : 'Moon'}</p>
-        <p>{reasoning}</p>
+        <p>{reasoning} {move[2]}</p>
       </button>
     </li>
   );

@@ -41,3 +41,7 @@
     --contrast-color: #213547
   }
 }
+
+body {
+  overflow-x: hidden;
+}
