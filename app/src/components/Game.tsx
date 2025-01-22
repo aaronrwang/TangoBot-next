@@ -10,24 +10,37 @@ const Game = ({ boardOrig }: GameProps) => {
   const [grid, setGrid] = useState<string[]>([]);
   const [activeCell, setActiveCell] = useState(-1);
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  const onNext = useCallback(() => {
+    setTurn((prev) => Math.min(prev + 1, boardOrig.moves.length));
+  }, [boardOrig]);
+  function onBack() {
+    setTurn((prev) => Math.max(prev - 1, 0));
+  }
+  function resetTurn() {
+    setTurn(0);
+  }
+  const setTurnToEnd = useCallback(() => {
+    setTurn(boardOrig.moves.length);
+  }, [boardOrig]);
+
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
       // Your function for the left arrow key
       onBack();
     }
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === ' ') {
-      // Your function for the left arrow key
+      // Your function for the right arrow key
       onNext();
     }
     if (event.key === 'r') {
-      // Your function for the left arrow key
+      // Your function for resetting turn
       resetTurn();
     }
     if (event.key === 'Enter') {
-      // Your function for the left arrow key
+      // Your function for setting turn to the end
       setTurnToEnd();
     }
-  };
+  }, [boardOrig]);
 
   useEffect(() => {
     // Add the event listener when the component is mounted
@@ -37,7 +50,7 @@ const Game = ({ boardOrig }: GameProps) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [boardOrig]);
 
   useEffect(() => {
     // Make sure the state updates happen only after initial render
@@ -50,7 +63,7 @@ const Game = ({ boardOrig }: GameProps) => {
     (boardOrig.grid).forEach((s: string) => {
       newGrid.push(s);
     });
-    console.log((boardOrig.moves).length, turn)
+    // console.log((boardOrig.moves).length, turn)
     if (turn > (boardOrig.moves).length) {
       setTurn(0)
       return
@@ -66,22 +79,7 @@ const Game = ({ boardOrig }: GameProps) => {
       setActiveCell(boardOrig.moves[turn - 1][0]);
     }
   }, [turn])
-  const onNext = useCallback(() => {
-    setTurn((prev) => Math.min(prev + 1, boardOrig.moves.length));
-  }, [boardOrig.date]);
-  function onBack() {
-    setTurn((prev) => Math.max(prev - 1, 0));
-  }
-  function resetTurn() {
-    setTurn(0);
-  }
-  const setTurnToEnd = useCallback(() => {
-    setTurn(boardOrig.moves.length);
-  }, [boardOrig.date]);
 
-  function turnSet(n: number) {
-    setTurn(n);
-  }
   const board = {
     equals: boardOrig.equals,
     crosses: boardOrig.crosses,
@@ -90,18 +88,18 @@ const Game = ({ boardOrig }: GameProps) => {
     date: boardOrig.date
   }
   return (
-    <div className="flex flex-col  w-full md:grid md:grid-cols-10">
-      <div className="col-span-1 bg-red-400 md:col-span-8">
+    <div className="flex flex-col  w-full md:grid md:grid-cols-10 min-w-[400px]">
+      <div className="col-span-1 md:col-span-8 mb-4 md:mb-0">
         < Grid board={board} />
       </div>
       {/* <div className="col-span-1"></div> */}
-      <div className="col-span-1 md:col-span-2 bg-blue-200 justify-center items-center">
+      <div className="col-span-1 md:col-span-2 justify-center items-center">
         <div className="justify-center items-center">
           <h1 className="text-center flex-1">Turn: {turn}</h1>
           <ul className="overflow-auto md:h-[70vh] flex flex-col">
-            <li key={0} className={0 === turn ? 'bg-slate-500 flex' : 'flex'}><button onClick={() => turnSet(0)}>Starting Position</button></li>
+            <li className={0 === turn ? 'bg-slate-500 flex justify-center border border-[var(--contrast-color)] rounded m-2' : 'hidden md:flex justify-center border border-[var(--contrast-color)] rounded m-2'}><button onClick={() => setTurn(0)} className="flex flex-col justify-center items-center pb-[48px]">Starting Position</button></li>
             {(boardOrig.moves).map((move, i) => (
-              <Move move={move} turn={turn} key={i} index={i} turnSet={turnSet} />
+              <Move move={move} turn={turn} key={i} index={i} turnSet={setTurn} />
             ))}
           </ul>
           <div className="flex justify-evenly">

@@ -33,12 +33,14 @@ export default function Move({ move, index, turn, turnSet }: GameProps) {
     reasoning = 'Isolate col and solve'
   }
 
-  let liClass = 'flex justify-center border border-[var(--contrast-color)] rounded m-2'
+  let liClass = 'justify-center border border-[var(--contrast-color)] rounded m-2'
   if (index + 1 === turn) {
-    liClass += ' bg-slate-500'
+    liClass += 'flex bg-slate-500'
+  } else {
+    liClass += 'hidden md:flex'
   }
   return (
-    <li className={liClass}>
+    <li className={index + 1 === turn ? 'bg-slate-500 flex justify-center border border-[var(--contrast-color)] rounded m-2' : 'hidden md:flex justify-center border border-[var(--contrast-color)] rounded m-2'}>
       <button onClick={() => turnSet(index + 1)} className="flex flex-col justify-center items-center">
         <p>Turn {index + 1}:({Math.floor(move[0] / 6)},{move[0] % 6})</p>
         <p>{move[1] === 'S' ? 'Sun' : 'Moon'}</p>
