@@ -2,7 +2,7 @@
 
 import { Board as BoardType } from '../../../types/Board';
 import Game from './Game';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 
 interface MainProps {
   boards: BoardType[];

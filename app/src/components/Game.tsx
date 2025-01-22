@@ -40,7 +40,7 @@ const Game = ({ boardOrig }: GameProps) => {
       // Your function for setting turn to the end
       setTurnToEnd();
     }
-  }, [boardOrig]);
+  }, [boardOrig, onNext, setTurnToEnd]);
 
   useEffect(() => {
     // Add the event listener when the component is mounted
@@ -50,7 +50,7 @@ const Game = ({ boardOrig }: GameProps) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [boardOrig]);
+  }, [boardOrig, handleKeyDown]);
 
   useEffect(() => {
     // Make sure the state updates happen only after initial render
@@ -78,7 +78,7 @@ const Game = ({ boardOrig }: GameProps) => {
     } else {
       setActiveCell(boardOrig.moves[turn - 1][0]);
     }
-  }, [turn])
+  }, [turn, boardOrig.grid, boardOrig.moves])
 
   const board = {
     equals: boardOrig.equals,

@@ -3,7 +3,7 @@ interface GameProps {
   move: MoveType;
   index: number;
   turn: number;
-  turnSet: Function;
+  turnSet: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function Move({ move, index, turn, turnSet }: GameProps) {
   let reasoning = ''
@@ -31,13 +31,6 @@ export default function Move({ move, index, turn, turnSet }: GameProps) {
     reasoning = 'Isolate row and solve'
   } else if (rc == '4.2') {
     reasoning = 'Isolate col and solve'
-  }
-
-  let liClass = 'justify-center border border-[var(--contrast-color)] rounded m-2'
-  if (index + 1 === turn) {
-    liClass += 'flex bg-slate-500'
-  } else {
-    liClass += 'hidden md:flex'
   }
   return (
     <li className={index + 1 === turn ? 'bg-slate-500 flex justify-center border border-[var(--contrast-color)] rounded m-2' : 'hidden md:flex justify-center border border-[var(--contrast-color)] rounded m-2'}>
