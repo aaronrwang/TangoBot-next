@@ -35,7 +35,7 @@ const Main = ({ boards }: MainProps) => {
   const dates = sortedBoards.map((board) => board.date);
 
   return (
-    <div className="w-screen h-screen px-8 py-4">
+    <div className="w-screen h-screen md:px-8 md:py-4">
       <div className="flex w-full gap-4 my-4 mx-8">
         <label className="align-middle" htmlFor="date-select">
           Select a Date:

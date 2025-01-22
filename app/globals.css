@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*:focus {
+  outline: none;
+}
+
 :root {
   --background-color: #242424;
   --contrast-color: rgba(255, 255, 255, 0.87);
