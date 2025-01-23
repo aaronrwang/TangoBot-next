@@ -3,6 +3,7 @@ import Board from '../pages/api/board';
 import { Board as BoardType, BoardMongo } from '../types/Board';
 import Main from './src/components/Main';
 
+export const revalidate = 3600;
 
 async function fetchBoards(): Promise<BoardType[]> {
   // Ensure the MongoDB connection is established
