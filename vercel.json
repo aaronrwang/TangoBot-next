@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/pages/api/revalidate",
+      "path": "/api/revalidate",
       "schedule": "0 */6 * * *"
     }
   ]
