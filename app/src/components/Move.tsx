@@ -37,7 +37,7 @@ export default function Move({ move, index, turn, turnSet }: GameProps) {
       <button onClick={() => turnSet(index + 1)} className="flex flex-col justify-center items-center">
         <p>Turn {index + 1}:({Math.floor(move[0] / 6)},{move[0] % 6})</p>
         <p>{move[1] === 'S' ? 'Sun' : 'Moon'}</p>
-        <p>{reasoning} {move[2]}</p>
+        <p>{reasoning}</p>
       </button>
     </li>
   );
