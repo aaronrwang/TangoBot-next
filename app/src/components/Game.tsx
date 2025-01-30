@@ -79,6 +79,13 @@ const Game = ({ boardOrig }: GameProps) => {
       setActiveCell(boardOrig.moves[turn - 1][0]);
     }
   }, [turn, boardOrig.grid, boardOrig.moves])
+  useEffect(() => {
+    // Find the element dynamically based on the turn state
+    const element = document.getElementById(`move-${turn}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [turn]);
 
   const board = {
     equals: boardOrig.equals,
