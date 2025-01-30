@@ -104,7 +104,7 @@ const Game = ({ boardOrig }: GameProps) => {
         <div className="justify-center items-center">
           <h1 className="text-center flex-1">Turn: {turn}</h1>
           <ul className="overflow-auto md:h-[70vh] flex flex-col">
-            <li className={0 === turn ? 'bg-slate-500 flex justify-center border border-[var(--contrast-color)] rounded m-2' : 'hidden md:flex justify-center border border-[var(--contrast-color)] rounded m-2'}><button onClick={() => setTurn(0)} className="flex flex-col justify-center items-center pb-[48px]">Starting Position</button></li>
+            <li id="move-0" className={0 === turn ? 'bg-slate-500 flex justify-center border border-[var(--contrast-color)] rounded m-2' : 'hidden md:flex justify-center border border-[var(--contrast-color)] rounded m-2'}><button onClick={() => setTurn(0)} className="flex flex-col justify-center items-center pb-[48px]">Starting Position</button></li>
             {(boardOrig.moves).map((move, i) => (
               <Move move={move} turn={turn} key={i} index={i} turnSet={setTurn} />
             ))}
