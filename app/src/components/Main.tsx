@@ -14,8 +14,8 @@ const Main = ({ boards }: MainProps) => {
 
   // Set the initial board state to the first sorted board
   const [board, setBoard] = useState<BoardType | null>(sortedBoards[0] || null);
-  let hardmoves = board?.moves.map(move => Number(move[2][0]));
-  let difficultyCount = hardmoves?.reduce<number>((acc, num) => acc + num, 0);
+  const hardmoves = board?.moves.map(move => Number(move[2][0]));
+  const difficultyCount = hardmoves?.reduce<number>((acc, num) => acc + num, 0);
   let difficulty = ''
   if (difficultyCount != undefined) {
     if (difficultyCount >= 65) {

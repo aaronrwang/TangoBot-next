@@ -40,7 +40,7 @@ const Game = ({ boardOrig }: GameProps) => {
       // Your function for setting turn to the end
       setTurnToEnd();
     }
-  }, [boardOrig, onNext, setTurnToEnd]);
+  }, [onNext, setTurnToEnd]);
 
   useEffect(() => {
     // Add the event listener when the component is mounted
