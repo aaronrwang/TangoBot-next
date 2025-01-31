@@ -18,15 +18,15 @@ const Main = ({ boards }: MainProps) => {
   const difficultyCount = hardmoves?.reduce<number>((acc, num) => acc + num, 0);
   let difficulty = ''
   if (difficultyCount != undefined) {
-    if (difficultyCount >= 65) {
+    if (difficultyCount >= 64) {
       difficulty = 'Hard'
-    } else if (difficultyCount >= 50) {
+    } else if (difficultyCount >= 57) {
       difficulty = 'Medium'
     } else {
       difficulty = 'Easy'
     }
   }
-  console.log(difficulty + ': ' + difficultyCount)
+  // console.log(difficulty + ': ' + difficultyCount)
 
   const dateRef = useRef<HTMLSelectElement>(null);
 
